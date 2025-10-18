@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propzy Savings Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .calculator-container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 32px;
+            font-size: 16px;
+        }
+
+        .input-group {
+            margin-bottom: 32px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .slider-container {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.4);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.4);
+        }
+
+        .unit-display {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            color: #2563eb;
+            margin: 16px 0;
+        }
+
+        .unit-label {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .results-container {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 32px;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .price-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .price-card.appfolio {
+            border: 2px solid #ef4444;
+        }
+
+        .price-card.propzy {
+            border: 2px solid #10b981;
+        }
+
+        .provider-name {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .appfolio .provider-name {
+            color: #ef4444;
+        }
+
+        .propzy .provider-name {
+            color: #10b981;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .price-period {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .savings-highlight {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .savings-label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .savings-amount {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .savings-period {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 24px;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37,99,235,0.4);
+        }
+
+        .breakdown {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .breakdown-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .breakdown-row.total {
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 16px;
+            margin-top: 8px;
+            padding-top: 16px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        @media (max-width: 640px) {
+            .calculator-container {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .unit-display {
+                font-size: 36px;
+            }
+
+            .savings-amount {
+                font-size: 36px;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>How Much Will You Save?</h1>
+        <p class="subtitle">See your potential savings switching from AppFolio to Propzy</p>
+
+        <div class="input-group">
+            <label for="units">Number of Units You Manage</label>
+            <div class="slider-container">
+                <input type="range" id="units" min="50" max="2000" value="300" step="10">
+                <div class="unit-display" id="unitDisplay">300</div>
+                <div class="unit-label">units</div>
+            </div>
+        </div>
+
+        <div class="results-container">
+            <div class="comparison">
+                <div class="price-card appfolio">
+                    <div class="provider-name">AppFolio</div>
+                    <div class="price" id="appfolioPrice">$447</div>
+                    <div class="price-period">per month</div>
+                </div>
+
+                <div class="price-card propzy">
+                    <div class="provider-name">Propzy</div>
+                    <div class="price" id="propzyPrice">$120</div>
+                    <div class="price-period">per month</div>
+                </div>
+            </div>
+
+            <div class="savings-highlight">
+                <div class="savings-label">Your Annual Savings</div>
+                <div class="savings-amount" id="annualSavings">$3,924</div>
+                <div class="savings-period">every year</div>
+            </div>
+
+            <div class="breakdown">
+                <div class="breakdown-title">5-Year Projection</div>
+                <div class="breakdown-row">
+                    <span>Year 1 Savings:</span>
+                    <span id="year1">$3,924</span>
+                </div>
+                <div class="breakdown-row">
+                    <span>Year 2 Savings:</span>
+                    <span id="year2">$3,924</span>
+                </div>
+                <div class="breakdown-row">
+                    <span>Year 3 Savings:</span>
+                    <span id="year3">$3,924</span>
+                </div>
+                <div class="breakdown-row">
+                    <span>Year 4 Savings:</span>
+                    <span id="year4">$3,924</span>
+                </div>
+                <div class="breakdown-row">
+                    <span>Year 5 Savings:</span>
+                    <span id="year5">$3,924</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span>Total 5-Year Savings:</span>
+                    <span id="fiveYear">$19,620</span>
+                </div>
+            </div>
+
+            <button class="cta-button" onclick="handleCTA()">
+                Start Saving Today →
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const unitsSlider = document.getElementById('units');
+        const unitDisplay = document.getElementById('unitDisplay');
+        const appfolioPrice = document.getElementById('appfolioPrice');
+        const propzyPrice = document.getElementById('propzyPrice');
+        const annualSavings = document.getElementById('annualSavings');
+        const year1 = document.getElementById('year1');
+        const year2 = document.getElementById('year2');
+        const year3 = document.getElementById('year3');
+        const year4 = document.getElementById('year4');
+        const year5 = document.getElementById('year5');
+        const fiveYear = document.getElementById('fiveYear');
+
+        function formatCurrency(amount) {
+            return ' + amount.toLocaleString('en-US', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+        }
+
+        function calculatePrices() {
+            const units = parseInt(unitsSlider.value);
+            
+            // AppFolio pricing ($1.49/unit with minimum $298)
+            const appfolioMonthly = Math.max(units * 1.49, 298);
+            
+            // Propzy pricing ($0.40/unit with minimum $25)
+            const propzyMonthly = Math.max(units * 0.40, 25);
+            
+            // Calculate savings
+            const monthlySavings = appfolioMonthly - propzyMonthly;
+            const annualSavingsAmount = monthlySavings * 12;
+            const fiveYearSavings = annualSavingsAmount * 5;
+            
+            // Update display
+            unitDisplay.textContent = units.toLocaleString();
+            appfolioPrice.textContent = formatCurrency(appfolioMonthly);
+            propzyPrice.textContent = formatCurrency(propzyMonthly);
+            annualSavings.textContent = formatCurrency(annualSavingsAmount);
+            
+            // Update breakdown (assuming 10% price increase for AppFolio each year)
+            year1.textContent = formatCurrency(annualSavingsAmount);
+            year2.textContent = formatCurrency(annualSavingsAmount * 1.05); // Slightly more savings as AppFolio increases
+            year3.textContent = formatCurrency(annualSavingsAmount * 1.10);
+            year4.textContent = formatCurrency(annualSavingsAmount * 1.15);
+            year5.textContent = formatCurrency(annualSavingsAmount * 1.20);
+            fiveYear.textContent = formatCurrency(fiveYearSavings);
+        }
+
+        function handleCTA() {
+            // Get current calculation
+            const units = parseInt(unitsSlider.value);
+            const monthlySavings = Math.max(units * 1.49, 298) - Math.max(units * 0.40, 25);
+            const annualSavingsAmount = monthlySavings * 12;
+            
+            // Redirect to signup with pre-filled data
+            window.location.href = `/signup?units=${units}&savings=${annualSavingsAmount}`;
+            
+            // Or show modal, or link to calendar, etc.
+            // alert(`Let's get you started saving ${annualSavingsAmount.toLocaleString()}/year!`);
+        }
+
+        // Update on slider change
+        unitsSlider.addEventListener('input', calculatePrices);
+
+        // Initial calculation
+        calculatePrices();
+    </script>
+</body>
+</html>
