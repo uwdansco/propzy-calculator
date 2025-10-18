@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
@@ -23,9 +23,9 @@
 
         .calculator-container {
             background: white;
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 40px;
-            max-width: 600px;
+            max-width: 520px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
@@ -35,15 +35,17 @@
             color: #1e293b;
             margin-bottom: 8px;
             font-weight: 700;
+            text-align: center;
         }
 
         .subtitle {
             color: #64748b;
-            margin-bottom: 32px;
+            margin-bottom: 40px;
             font-size: 16px;
+            text-align: center;
         }
 
-        .input-group {
+        .input-section {
             margin-bottom: 32px;
         }
 
@@ -51,31 +53,33 @@
             display: block;
             font-weight: 600;
             color: #1e293b;
-            margin-bottom: 12px;
-            font-size: 14px;
+            margin-bottom: 20px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .slider-container {
             position: relative;
-            padding: 20px 0;
+            padding: 10px 0;
         }
 
         input[type="range"] {
             width: 100%;
-            height: 8px;
-            border-radius: 4px;
+            height: 6px;
+            border-radius: 3px;
             background: #e2e8f0;
             outline: none;
             -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
         }
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: #2563eb;
             cursor: pointer;
@@ -83,8 +87,8 @@
         }
 
         input[type="range"]::-moz-range-thumb {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: #2563eb;
             cursor: pointer;
@@ -94,52 +98,48 @@
 
         .unit-display {
             text-align: center;
-            font-size: 48px;
+            font-size: 64px;
             font-weight: 700;
             color: #2563eb;
-            margin: 16px 0;
+            margin: 20px 0 8px 0;
+            line-height: 1;
         }
 
         .unit-label {
             text-align: center;
             color: #64748b;
             font-size: 14px;
-        }
-
-        .results-container {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 24px;
-            margin-top: 32px;
+            margin-bottom: 30px;
         }
 
         .comparison {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 24px;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
         .price-card {
             background: white;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             text-align: center;
+            border: 2px solid;
         }
 
         .price-card.appfolio {
-            border: 2px solid #ef4444;
+            border-color: #ef4444;
         }
 
         .price-card.propzy {
-            border: 2px solid #10b981;
+            border-color: #10b981;
         }
 
         .provider-name {
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             margin-bottom: 8px;
         }
 
@@ -159,36 +159,68 @@
         }
 
         .price-period {
-            font-size: 14px;
+            font-size: 13px;
             color: #64748b;
         }
 
         .savings-highlight {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
-            padding: 24px;
+            padding: 28px;
             border-radius: 12px;
             text-align: center;
+            margin-bottom: 24px;
         }
 
         .savings-label {
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             margin-bottom: 8px;
             opacity: 0.9;
         }
 
         .savings-amount {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .savings-period {
-            font-size: 16px;
+            font-size: 15px;
             opacity: 0.9;
+        }
+
+        .projection {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .projection-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .projection-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .projection-row.total {
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 15px;
+            padding-top: 12px;
+            margin-top: 8px;
+            border-top: 2px solid #e2e8f0;
         }
 
         .cta-button {
@@ -196,12 +228,11 @@
             background: #2563eb;
             color: white;
             border: none;
-            padding: 16px 32px;
-            border-radius: 8px;
+            padding: 18px 32px;
+            border-radius: 10px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 24px;
             transition: all 0.3s;
         }
 
@@ -211,51 +242,21 @@
             box-shadow: 0 4px 12px rgba(37,99,235,0.4);
         }
 
-        .breakdown {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 2px solid #e2e8f0;
-        }
-
-        .breakdown-title {
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 16px;
-            font-size: 14px;
-        }
-
-        .breakdown-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        .breakdown-row.total {
-            font-weight: 700;
-            color: #1e293b;
-            font-size: 16px;
-            margin-top: 8px;
-            padding-top: 16px;
-            border-top: 2px solid #e2e8f0;
-        }
-
         @media (max-width: 640px) {
             .calculator-container {
-                padding: 24px;
+                padding: 30px 24px;
             }
 
             h1 {
-                font-size: 24px;
+                font-size: 26px;
             }
 
             .unit-display {
-                font-size: 36px;
+                font-size: 48px;
             }
 
             .savings-amount {
-                font-size: 36px;
+                font-size: 42px;
             }
 
             .comparison {
@@ -269,71 +270,70 @@
         <h1>How Much Will You Save?</h1>
         <p class="subtitle">See your potential savings switching from AppFolio to Propzy</p>
 
-        <div class="input-group">
-            <label for="units">Number of Units You Manage</label>
+        <div class="input-section">
+            <label for="units">NUMBER OF UNITS YOU MANAGE</label>
             <div class="slider-container">
                 <input type="range" id="units" min="50" max="2000" value="300" step="10">
-                <div class="unit-display" id="unitDisplay">300</div>
-                <div class="unit-label">units</div>
+            </div>
+            <div class="unit-display" id="unitDisplay">300</div>
+            <div class="unit-label">units</div>
+        </div>
+
+        <div class="comparison">
+            <div class="price-card appfolio">
+                <div class="provider-name">APPFOLIO</div>
+                <div class="price" id="appfolioPrice">$447</div>
+                <div class="price-period">per month</div>
+            </div>
+
+            <div class="price-card propzy">
+                <div class="provider-name">PROPZY</div>
+                <div class="price" id="propzyPrice">$120</div>
+                <div class="price-period">per month</div>
             </div>
         </div>
 
-        <div class="results-container">
-            <div class="comparison">
-                <div class="price-card appfolio">
-                    <div class="provider-name">AppFolio</div>
-                    <div class="price" id="appfolioPrice">$447</div>
-                    <div class="price-period">per month</div>
-                </div>
-
-                <div class="price-card propzy">
-                    <div class="provider-name">Propzy</div>
-                    <div class="price" id="propzyPrice">$120</div>
-                    <div class="price-period">per month</div>
-                </div>
-            </div>
-
-            <div class="savings-highlight">
-                <div class="savings-label">Your Annual Savings</div>
-                <div class="savings-amount" id="annualSavings">$3,924</div>
-                <div class="savings-period">every year</div>
-            </div>
-
-            <div class="breakdown">
-                <div class="breakdown-title">5-Year Projection</div>
-                <div class="breakdown-row">
-                    <span>Year 1 Savings:</span>
-                    <span id="year1">$3,924</span>
-                </div>
-                <div class="breakdown-row">
-                    <span>Year 2 Savings:</span>
-                    <span id="year2">$3,924</span>
-                </div>
-                <div class="breakdown-row">
-                    <span>Year 3 Savings:</span>
-                    <span id="year3">$3,924</span>
-                </div>
-                <div class="breakdown-row">
-                    <span>Year 4 Savings:</span>
-                    <span id="year4">$3,924</span>
-                </div>
-                <div class="breakdown-row">
-                    <span>Year 5 Savings:</span>
-                    <span id="year5">$3,924</span>
-                </div>
-                <div class="breakdown-row total">
-                    <span>Total 5-Year Savings:</span>
-                    <span id="fiveYear">$19,620</span>
-                </div>
-            </div>
-
-            <button class="cta-button" onclick="handleCTA()">
-                Start Saving Today →
-            </button>
+        <div class="savings-highlight">
+            <div class="savings-label">YOUR ANNUAL SAVINGS</div>
+            <div class="savings-amount" id="annualSavings">$3,924</div>
+            <div class="savings-period">every year</div>
         </div>
+
+        <div class="projection">
+            <div class="projection-title">5-Year Projection</div>
+            <div class="projection-row">
+                <span>Year 1 Savings:</span>
+                <span id="year1">$3,924</span>
+            </div>
+            <div class="projection-row">
+                <span>Year 2 Savings:</span>
+                <span id="year2">$3,924</span>
+            </div>
+            <div class="projection-row">
+                <span>Year 3 Savings:</span>
+                <span id="year3">$3,924</span>
+            </div>
+            <div class="projection-row">
+                <span>Year 4 Savings:</span>
+                <span id="year4">$3,924</span>
+            </div>
+            <div class="projection-row">
+                <span>Year 5 Savings:</span>
+                <span id="year5">$3,924</span>
+            </div>
+            <div class="projection-row total">
+                <span>Total 5-Year Savings:</span>
+                <span id="fiveYear">$19,620</span>
+            </div>
+        </div>
+
+        <button class="cta-button" onclick="handleCTA()">
+            Start Saving Today →
+        </button>
     </div>
 
     <script>
+        // Get all elements
         const unitsSlider = document.getElementById('units');
         const unitDisplay = document.getElementById('unitDisplay');
         const appfolioPrice = document.getElementById('appfolioPrice');
@@ -346,11 +346,15 @@
         const year5 = document.getElementById('year5');
         const fiveYear = document.getElementById('fiveYear');
 
+        // Check URL parameters for pre-filled units
+        const urlParams = new URLSearchParams(window.location.search);
+        const prefilledUnits = urlParams.get('units');
+        if (prefilledUnits) {
+            unitsSlider.value = prefilledUnits;
+        }
+
         function formatCurrency(amount) {
-            return ' + amount.toLocaleString('en-US', {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            });
+            return '$' + Math.round(amount).toLocaleString('en-US');
         }
 
         function calculatePrices() {
@@ -373,33 +377,35 @@
             propzyPrice.textContent = formatCurrency(propzyMonthly);
             annualSavings.textContent = formatCurrency(annualSavingsAmount);
             
-            // Update breakdown (assuming 10% price increase for AppFolio each year)
+            // Update 5-year projection
             year1.textContent = formatCurrency(annualSavingsAmount);
-            year2.textContent = formatCurrency(annualSavingsAmount * 1.05); // Slightly more savings as AppFolio increases
-            year3.textContent = formatCurrency(annualSavingsAmount * 1.10);
-            year4.textContent = formatCurrency(annualSavingsAmount * 1.15);
-            year5.textContent = formatCurrency(annualSavingsAmount * 1.20);
+            year2.textContent = formatCurrency(annualSavingsAmount);
+            year3.textContent = formatCurrency(annualSavingsAmount);
+            year4.textContent = formatCurrency(annualSavingsAmount);
+            year5.textContent = formatCurrency(annualSavingsAmount);
             fiveYear.textContent = formatCurrency(fiveYearSavings);
         }
 
         function handleCTA() {
-            // Get current calculation
             const units = parseInt(unitsSlider.value);
-            const monthlySavings = Math.max(units * 1.49, 298) - Math.max(units * 0.40, 25);
-            const annualSavingsAmount = monthlySavings * 12;
+            const savings = parseInt(annualSavings.textContent.replace(/[$,]/g, ''));
             
-            // Redirect to signup with pre-filled data
-            window.location.href = `/signup?units=${units}&savings=${annualSavingsAmount}`;
+            // Replace with your actual signup or demo link
+            window.location.href = `/signup?units=${units}&savings=${savings}`;
             
-            // Or show modal, or link to calendar, etc.
-            // alert(`Let's get you started saving ${annualSavingsAmount.toLocaleString()}/year!`);
+            // Or use Calendly:
+            // window.location.href = 'https://calendly.com/yourname/demo';
         }
 
-        // Update on slider change
+        // Update on slider change - THIS IS THE CRITICAL PART
         unitsSlider.addEventListener('input', calculatePrices);
+        unitsSlider.addEventListener('change', calculatePrices);
 
         // Initial calculation
         calculatePrices();
+
+        // Also update on page load (in case URL params exist)
+        window.addEventListener('load', calculatePrices);
     </script>
 </body>
 </html>
